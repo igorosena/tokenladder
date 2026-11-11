@@ -1,0 +1,50 @@
+{
+  "name": "tokenladder",
+  "version": "0.1.0",
+  "description": "Local proxy for coding agents that routes each request to the cheapest model that can solve it, and trims tool output. Measured: -94% cost vs running everything on the top model, same quality.",
+  "type": "module",
+  "bin": {
+    "tokenladder": "bin/tokenladder.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "bench/*.js",
+    "bench/tasks.json",
+    "bench/prompts.json",
+    "LICENSE",
+    "README.md",
+    "README.pt-BR.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node bin/tokenladder.js start",
+    "bench": "node bin/tokenladder.js bench"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Igor Sena",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorosena/tokenladder.git"
+  },
+  "homepage": "https://github.com/igorosena/tokenladder#readme",
+  "bugs": {
+    "url": "https://github.com/igorosena/tokenladder/issues"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "llm",
+    "proxy",
+    "tokens",
+    "cost",
+    "router",
+    "model-routing",
+    "anthropic",
+    "openai",
+    "prompt-caching"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "agent": {
+    "cmd": "claude",
+    "args": [
+      "-p",
+      "{prompt}",
+      "--output-format",
+      "json",
+      "--dangerously-skip-permissions",
+      "--no-session-persistence",
+      "--strict-mcp-config",
+      "--mcp-config",
+      "{\"mcpServers\":{}}"
+    ],
+    "modelArgs": [
+      "--model",
+      "{model}"
+    ],
+    "baseUrlEnv": "ANTHROPIC_BASE_URL",
+    "baseUrlSuffix": "",
+    "timeoutSec": 600,
+    "_note": "--strict-mcp-config + empty --mcp-config keeps claude.ai MCP connectors out: they attach mid-conversation (33 tools, ~50 KB of JSON) at a different request each run, which rewrites the cached prefix and makes cache write / context noisy. --no-session-persistence keeps bench runs out of ~/.claude/projects. DISABLE_AUTOUPDATER=1: a bench run once triggered `npm install -g @anthropic-ai/claude-code`, which swaps the binary mid-bench and makes every following spawn fail with ENOENT.",
+    "env": {
+      "DISABLE_AUTOUPDATER": "1"
+    }
+  },
+  "variants": [
+    "passthrough",
+    "full"
+  ],
+  "runs": 3,
+  "tasks": [
+    {
+      "id": "fix-bug",
+      "prompt": "The test suite is failing. Run `npm test`, find the bug in src/ and fix it. Do not modify the tests.",
+      "check": {
+        "type": "cmd",
+        "cmd": "node --test >/dev/null 2>&1 && grep -q 'total of a single item' test/cart.test.js"
+      },
+      "_note": "Control task: the agent filters the test output itself (npm test | head -50, | grep '^# (pass|fail)'), so nothing reaches 2 KB and the proxy has nothing to compress. Unfiltered, Node 20's TAP output is ~13 KB and would be cut ~80%."
+    },
+    {
+      "id": "log-needle",
+      "prompt": "A payment failed this morning. Look at logs/server.log and tell me which order failed and why. Start your reply with the order id.",
+      "check": {
+        "type": "regex",
+        "pattern": "{paymentOrder}"
+      }
+    },
+    {
+      "id": "metrics-json",
+      "prompt": "Run `node scripts/metrics.js` and tell me which host looks overloaded on CPU. Reply with the host name.",
+      "check": {
+        "type": "regex",
+        "pattern": "{hotHost}"
+      }
+    },
+    {
+      "id": "csv-outlier",
+      "prompt": "Print data/requests.csv with a shell command and tell me which request has an abnormal latency. Reply with its request_id.",
+      "check": {
+        "type": "regex",
+        "pattern": "{slowRequest}"
+      }
+    },
+    {
+      "id": "explain",
+      "prompt": "Explain how src/cart.js works and list the edge cases it handles badly.",
+      "check": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "html-page",
+      "prompt": "Create a simple landing page in public/index.html for a coffee shop: header, three sections and a contact form. Plain HTML and CSS, no framework.",
+      "check": {
+        "type": "cmd",
+        "cmd": "grep -qi '<form' public/index.html && grep -qi '<html' public/index.html"
+      },
+      "_note": "The user's example: a trivial from-scratch task that a frontier model would do at frontier prices. Any rung handles it."
+    },
+    {
+      "id": "order-history",
+      "prompt": "Add an order history: src/orders.js that saves orders to data/orders.json, a scripts/order.js CLI that adds an order from its arguments, and tests for both. Do not touch src/cart.js or its tests.",
+      "check": {
+        "type": "cmd",
+        "cmd": "test -f src/orders.js && test -f scripts/order.js && ls test | grep -qi order && node --test test/*order*.test.* >/dev/null 2>&1"
+      },
+      "_note": "A well-defined multi-file feature (the router's build rung). The pre-existing cart bug is excluded from the check on purpose."
+    }
+  ],
+  "_rung_note": "Tasks cover the router's rungs: html-page / log-needle / metrics-json / csv-outlier / explain are lookup, fix-bug is edit, order-history is build. Run with the model a user would pick by hand (--model fable or opus) so passthrough is what they pay without the proxy."
+}

@@ -1,0 +1,6 @@
+.env
+node_modules/
+bench-results/
+STATUS.md
+*.tgz
+.DS_Store

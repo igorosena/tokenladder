@@ -1,0 +1,405 @@
+{
+ "_note": "100 labeled prompts for the router eval (tokenladder route-eval), written the way people actually type to a coding agent: casual, lowercase, typos, pasted errors, PT and EN mixed, vague or precise. label = the cheapest rung that fully covers the request: lookup (answer/explain/run-and-report, or a small self-contained thing from scratch), edit (bounded change to existing code, including bugs an error or test points at), build (well-defined feature across files), open (unknown cause, design, risk, no clear target). The 7 bench task prompts are included verbatim.",
+ "prompts": [
+  {
+   "label": "lookup",
+   "text": "o que esse projeto faz?"
+  },
+  {
+   "label": "lookup",
+   "text": "explica esse erro:\nTypeError: Cannot read properties of undefined (reading 'map')\n    at renderList (src/components/List.jsx:14:22)"
+  },
+  {
+   "label": "lookup",
+   "text": "where is the login handled"
+  },
+  {
+   "label": "lookup",
+   "text": "roda os testes e me fala se ta tudo passando"
+  },
+  {
+   "label": "lookup",
+   "text": "qual a diferença entre useEffect e useLayoutEffect"
+  },
+  {
+   "label": "lookup",
+   "text": "me mostra como o cart calcula o total"
+  },
+  {
+   "label": "lookup",
+   "text": "what does this regex do: ^(?=.*[A-Z])(?=.*\\d).{8,}$"
+  },
+  {
+   "label": "lookup",
+   "text": "summarize what changed in the last 10 commits"
+  },
+  {
+   "label": "lookup",
+   "text": "tem algum lugar que a gente usa moment.js ainda?"
+  },
+  {
+   "label": "lookup",
+   "text": "how do I run this project locally? just tell me the commands"
+  },
+  {
+   "label": "lookup",
+   "text": "faz um .gitignore pra projeto python com venv"
+  },
+  {
+   "label": "lookup",
+   "text": "write a bash one liner to count lines of code in src excluding tests"
+  },
+  {
+   "label": "lookup",
+   "text": "me dá um exemplo de fetch com async/await e tratamento de erro"
+  },
+  {
+   "label": "lookup",
+   "text": "pq o npm install ta dando warning de peer dependency? só explica, não muda nada"
+  },
+  {
+   "label": "lookup",
+   "text": "is this function pure?\nfunction add(a,b){ total += a+b; return total }"
+  },
+  {
+   "label": "lookup",
+   "text": "me explica o que o docker-compose.yml desse projeto sobe"
+  },
+  {
+   "label": "lookup",
+   "text": "write a sql query that returns the top 5 customers by total order value"
+  },
+  {
+   "label": "lookup",
+   "text": "what's the time complexity of the sort in utils/rank.js"
+  },
+  {
+   "label": "lookup",
+   "text": "which env vars does the app need? list them"
+  },
+  {
+   "label": "lookup",
+   "text": "escreve uma mensagem de commit pras mudanças que estão no stage"
+  },
+  {
+   "label": "lookup",
+   "text": "converte esse json pra yaml:\n{\"name\":\"api\",\"port\":3000,\"debug\":true}"
+  },
+  {
+   "label": "lookup",
+   "text": "esse código ta certo?\nconst x = arr.filter(a => a.id = 3)"
+  },
+  {
+   "label": "lookup",
+   "text": "gera um README básico pra esse projeto"
+  },
+  {
+   "label": "lookup",
+   "text": "what's the difference between the dev and prod configs"
+  },
+  {
+   "label": "lookup",
+   "text": "dá um exemplo de como usar a função parseDate daqui"
+  },
+  {
+   "label": "lookup",
+   "text": "cria um script python que renomeia todos os arquivos .JPG pra .jpg na pasta"
+  },
+  {
+   "label": "lookup",
+   "text": "git: como desfaço o último commit sem perder as mudanças?"
+  },
+  {
+   "label": "lookup",
+   "text": "check if there are any TODO comments left in src and list them"
+  },
+  {
+   "label": "lookup",
+   "text": "why is this returning undefined:\nfunction getUser(id){ users.find(u => u.id === id) }"
+  },
+  {
+   "label": "lookup",
+   "text": "A payment failed this morning. Look at logs/server.log and tell me which order failed and why. Start your reply with the order id."
+  },
+  {
+   "label": "lookup",
+   "text": "Run `node scripts/metrics.js` and tell me which host looks overloaded on CPU. Reply with the host name."
+  },
+  {
+   "label": "lookup",
+   "text": "Print data/requests.csv with a shell command and tell me which request has an abnormal latency. Reply with its request_id."
+  },
+  {
+   "label": "lookup",
+   "text": "Explain how src/cart.js works and list the edge cases it handles badly."
+  },
+  {
+   "label": "lookup",
+   "text": "Create a simple landing page in public/index.html for a coffee shop: header, three sections and a contact form. Plain HTML and CSS, no framework."
+  },
+  {
+   "label": "edit",
+   "text": "ta dando esse erro quando rodo npm test:\n\n  ReferenceError: formatPrice is not defined\n    at src/cart.js:42\n\nconserta"
+  },
+  {
+   "label": "edit",
+   "text": "adiciona um campo phone no formulario de cadastro e salva no banco junto"
+  },
+  {
+   "label": "edit",
+   "text": "rename getUserData to fetchUser everywhere"
+  },
+  {
+   "label": "edit",
+   "text": "add a test for the empty cart case"
+  },
+  {
+   "label": "edit",
+   "text": "o botão de salvar não ta desabilitando enquanto carrega, arruma isso em SaveButton.jsx"
+  },
+  {
+   "label": "edit",
+   "text": "update eslint config to allow console.log in scripts/"
+  },
+  {
+   "label": "edit",
+   "text": "bump react to 18.3 and fix whatever breaks"
+  },
+  {
+   "label": "edit",
+   "text": "make the error message in login more friendly, something like 'email ou senha incorretos'"
+  },
+  {
+   "label": "edit",
+   "text": "remove the unused imports in src/api/*.js"
+  },
+  {
+   "label": "edit",
+   "text": "troca os var por const/let no arquivo utils.js"
+  },
+  {
+   "label": "edit",
+   "text": "add a --dry-run flag to scripts/cleanup.js that prints what would be deleted"
+  },
+  {
+   "label": "edit",
+   "text": "the date is showing in UTC on the orders page, should be local time"
+  },
+  {
+   "label": "edit",
+   "text": "extract the validation in handleSubmit into its own function"
+  },
+  {
+   "label": "edit",
+   "text": "add pagination to the GET /users endpoint, limit and offset query params"
+  },
+  {
+   "label": "edit",
+   "text": "escreve testes pro módulo de desconto, cobre coupon fixo e percentual"
+  },
+  {
+   "label": "edit",
+   "text": "muda o timeout do axios pra 10s"
+  },
+  {
+   "label": "edit",
+   "text": "this test is failing after my change, fix the test not the code:\n  expected 'R$ 10,00' got 'R$10,00'"
+  },
+  {
+   "label": "edit",
+   "text": "add a loading spinner while the products list fetches"
+  },
+  {
+   "label": "edit",
+   "text": "faz o lineTotal arredondar pra 2 casas"
+  },
+  {
+   "label": "edit",
+   "text": "change the default port to 8080 and document it in the readme"
+  },
+  {
+   "label": "edit",
+   "text": "add input validation to createOrder: qty must be a positive integer"
+  },
+  {
+   "label": "edit",
+   "text": "corrige o typo 'recieve' em todo o projeto"
+  },
+  {
+   "label": "edit",
+   "text": "add a `--json` flag to the stats command"
+  },
+  {
+   "label": "edit",
+   "text": "deixa a função fetchAll em paralelo com Promise.all em vez de for await"
+  },
+  {
+   "label": "edit",
+   "text": "add a docstring to every public function in src/cart.js"
+  },
+  {
+   "label": "edit",
+   "text": "converte esse componente de classe pra função: src/components/Modal.jsx"
+  },
+  {
+   "label": "edit",
+   "text": "adiciona um log quando o pagamento falha, com o id do pedido"
+  },
+  {
+   "label": "edit",
+   "text": "allow the coupon code to be case insensitive"
+  },
+  {
+   "label": "edit",
+   "text": "make npm start also watch the css folder"
+  },
+  {
+   "label": "edit",
+   "text": "add a 404 page"
+  },
+  {
+   "label": "edit",
+   "text": "fix: TypeError: cb is not a function at Queue.push (src/queue.js:31)"
+  },
+  {
+   "label": "edit",
+   "text": "o cartTotal ta retornando 0 pra item único, conserta"
+  },
+  {
+   "label": "edit",
+   "text": "update the README with the new env var REDIS_URL"
+  },
+  {
+   "label": "edit",
+   "text": "traduz os comentários de src/utils/date.js pra inglês"
+  },
+  {
+   "label": "edit",
+   "text": "The test suite is failing. Run `npm test`, find the bug in src/ and fix it. Do not modify the tests."
+  },
+  {
+   "label": "build",
+   "text": "preciso de um crud de produtos: model, rotas, validação e testes, seguindo o padrão do crud de usuários"
+  },
+  {
+   "label": "build",
+   "text": "set up github actions to run lint and tests on every PR and deploy to staging on merge to main"
+  },
+  {
+   "label": "build",
+   "text": "add dark mode to the app: toggle in the header, persist the choice, respect prefers-color-scheme"
+  },
+  {
+   "label": "build",
+   "text": "migra o projeto de javascript pra typescript, começa pelo src/ e deixa os testes passando"
+  },
+  {
+   "label": "build",
+   "text": "dockerize the app: Dockerfile, docker-compose with postgres, and a make target to run it"
+  },
+  {
+   "label": "build",
+   "text": "implementa o fluxo de 'esqueci minha senha': endpoint, email com token, página de reset e testes"
+  },
+  {
+   "label": "build",
+   "text": "add i18n support with pt-BR and en, move all the hardcoded strings"
+  },
+  {
+   "label": "build",
+   "text": "cria um comando de export que gera um relatório mensal de vendas em csv e pdf, com testes"
+  },
+  {
+   "label": "build",
+   "text": "replace the hand-rolled auth with passport.js, keep the existing sessions working"
+  },
+  {
+   "label": "build",
+   "text": "add a websocket channel that pushes order status updates to the frontend"
+  },
+  {
+   "label": "build",
+   "text": "build the settings page from the figma: profile form, notifications toggles, delete account, wired to the existing api"
+  },
+  {
+   "label": "build",
+   "text": "move the cron jobs out of the web process into a worker with its own entrypoint and queue"
+  },
+  {
+   "label": "build",
+   "text": "add rate limiting to the public api with redis, configurable per route, with tests"
+  },
+  {
+   "label": "build",
+   "text": "implement the import feature in docs/import-spec.md"
+  },
+  {
+   "label": "build",
+   "text": "add an admin dashboard page with the three charts from the spreadsheet, data from the existing /api/metrics"
+  },
+  {
+   "label": "build",
+   "text": "Add an order history: src/orders.js that saves orders to data/orders.json, a scripts/order.js CLI that adds an order from its arguments, and tests for both. Do not touch src/cart.js or its tests."
+  },
+  {
+   "label": "open",
+   "text": "o app ta lento depois que a lista passa de uns 500 itens, não sei o que é"
+  },
+  {
+   "label": "open",
+   "text": "sometimes the order gets saved twice. can't reproduce it reliably"
+  },
+  {
+   "label": "open",
+   "text": "revisa a segurança da api, principalmente auth e upload de arquivos, e corrige o que achar"
+  },
+  {
+   "label": "open",
+   "text": "the build works on my machine but fails on ci with a weird esbuild error, no idea why"
+  },
+  {
+   "label": "open",
+   "text": "como vc estruturaria esse projeto se fosse começar de novo? ele cresceu demais e ta uma bagunça"
+  },
+  {
+   "label": "open",
+   "text": "memory keeps growing on the worker until k8s kills it"
+  },
+  {
+   "label": "open",
+   "text": "faz funcionar"
+  },
+  {
+   "label": "open",
+   "text": "os testes passam mas em produção o desconto vem errado às vezes"
+  },
+  {
+   "label": "open",
+   "text": "should we move to a monorepo? look at how things are split today and give me a recommendation, then do it if it makes sense"
+  },
+  {
+   "label": "open",
+   "text": "something broke after the last deploy, users can't checkout. figure it out, prod is down"
+  },
+  {
+   "label": "open",
+   "text": "o websocket cai a cada 5 min mais ou menos e reconecta, não achei nada nos logs"
+  },
+  {
+   "label": "open",
+   "text": "clean up the codebase, it's a mess"
+  },
+  {
+   "label": "open",
+   "text": "we're getting 429 from the payments provider under load, I don't know if it's us or them"
+  },
+  {
+   "label": "open",
+   "text": "pensa num jeito de fazer o cache invalidar certo, hoje a gente limpa tudo na mão e ta dando problema"
+  },
+  {
+   "label": "open",
+   "text": "desacopla o módulo de pagamento, ta tudo amarrado no checkout e não dá pra testar"
+  }
+ ]
+}
