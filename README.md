@@ -115,7 +115,8 @@ In the Claude Code VS Code extension, add `{ "env": { "ANTHROPIC_BASE_URL": "htt
 | | status |
 |---|---|
 | **Claude Code** (Anthropic API key or Pro/Max login) | Tested end to end: 63 real runs in the last benchmark, plus earlier rounds. |
-| **Codex / OpenAI Responses and Chat Completions** | Implemented and covered by tests against a simulated server. Not yet benchmarked with real runs. |
+| **Codex CLI** (OpenAI Responses) | One real run so far: csv-outlier on gpt-6-astra, compression only. Weighted tokens −47%, 96% of the tool output cut, correct answer. Model routing is not set up for OpenAI models yet. |
+| **OpenAI Chat Completions** | Implemented and covered by tests against a simulated server. |
 | **Gemini and other providers** | Not supported yet. |
 
 The ladder is just configuration. To try other models, edit the rungs in `src/profiles.js`, or pass a spec:

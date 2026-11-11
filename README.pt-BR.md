@@ -115,7 +115,8 @@ Na extensão do Claude Code para VS Code, adicione `{ "env": { "ANTHROPIC_BASE_U
 | | situação |
 |---|---|
 | **Claude Code** (chave da API Anthropic ou login Pro/Max) | Testado de ponta a ponta: 63 execuções reais na última bateria, além das rodadas anteriores. |
-| **Codex / OpenAI Responses e Chat Completions** | Implementado e coberto por testes contra um servidor simulado. Ainda sem bateria com execuções reais. |
+| **Codex CLI** (OpenAI Responses) | Uma execução real até agora: csv-outlier no gpt-6-astra, só compressão. Tokens ponderados −47%, 96% da saída da ferramenta cortada, resposta correta. O roteamento de modelos ainda não está configurado para modelos da OpenAI. |
+| **OpenAI Chat Completions** | Implementado e coberto por testes contra um servidor simulado. |
 | **Gemini e outros provedores** | Ainda não suportados. |
 
 A escada é só configuração. Para testar outros modelos, edite os degraus em `src/profiles.js` ou passe um spec:
