@@ -4,6 +4,8 @@
 
 tokenladder is a local proxy that sits between your coding agent and the model provider. It reads what you asked for, sends it to the cheapest model that can do it, and trims the tool output the agent feeds back to the model. Ask for a simple HTML page while your agent runs on the most expensive model, and tokenladder serves it with a small one, so you pay small-model prices.
 
+[![npm](https://img.shields.io/npm/v/tokenladder)](https://www.npmjs.com/package/tokenladder)
+
 No dependencies. Node 20 or newer. Your API key or login passes through unchanged.
 
 ![Cost per task: everything on the top model vs tokenladder](https://raw.githubusercontent.com/igorosena/tokenladder/main/docs/cost.svg)
@@ -68,7 +70,7 @@ Two rules the compressor never breaks:
 ## Install
 
 ```bash
-npm install -g github:igorosena/tokenladder
+npm install -g tokenladder
 ```
 
 Or from a clone, to change the code:
