@@ -1,6 +1,6 @@
 {
   "name": "tokenladder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local proxy for coding agents that routes each request to the cheapest model that can solve it, and trims tool output. Measured: -94% cost vs running everything on the top model, same quality.",
   "type": "module",
   "bin": {
